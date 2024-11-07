@@ -49,7 +49,7 @@
     <mustache.version>0.9.11</mustache.version>
     <slf4j.version>2.0.9</slf4j.version>
     <threeten-extra.version>1.7.2</threeten-extra.version>
-    <undertow.version>2.3.10.Final</undertow.version>
+    <undertow.version>2.3.17.Final</undertow.version>
     <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
   </properties>
 
