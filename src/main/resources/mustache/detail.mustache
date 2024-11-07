@@ -1,0 +1,112 @@
+{{<layout}}
+
+{{!
+--------------------------------------------------------------------------------
+The HTML of the results detail page.
+--------------------------------------------------------------------------------
+}}
+
+{{$styles}}
+<link rel="stylesheet" href="/assets/css/detail.css">
+{{/styles}}
+
+{{$body}}
+{{#result}}
+
+<p>
+{{environmentDescription}}<br>
+
+{{#uuid}}
+  Run ID: <code>{{uuid}}</code><br>
+  {{#visualizeResultsUrl}}
+    <a href="{{visualizeResultsUrl}}">Visualize this run on the BW website</a><br>
+  {{/visualizeResultsUrl}}
+{{/uuid}}
+
+{{#commitId}}
+  <p>
+  commit:
+  {{#browseCommitUrl}}
+    <a href="{{browseCommitUrl}}"><code>{{commitId}}</code></a>
+  {{/browseCommitUrl}}
+  {{^browseCommitUrl}}
+    <code>{{commitId}}</code>
+  {{/browseCommitUrl}}
+  <br>
+  repository:
+  {{#repositoryUrl}}
+    {{#browseRepositoryUrl}}
+      <a href="{{browseRepositoryUrl}}"><code>{{repositoryUrl}}</code></a>
+    {{/browseRepositoryUrl}}
+    {{^browseRepositoryUrl}}
+      <code>{{repositoryUrl}}</code>
+    {{/browseRepositoryUrl}}
+  {{/repositoryUrl}}
+  {{^repositoryUrl}}
+    (unknown, probably
+    <a href="https://github.com/KhulnaSoft/BenchWeb"
+    ><code>https://github.com/KhulnaSoft/BenchWeb.git</code></a>)
+  {{/repositoryUrl}}
+  <br>
+  branch:
+  {{#branchName}}
+    {{#browseBranchUrl}}
+      <a href="{{browseBranchUrl}}"><code>{{branchName}}</code></a>
+    {{/browseBranchUrl}}
+    {{^browseBranchUrl}}
+      <code>{{branchName}}</code>
+    {{/browseBranchUrl}}
+  {{/branchName}}
+  {{^branchName}}
+    (unknown, probably <code>master</code>)
+  {{/branchName}}
+{{/commitId}}
+{{^commitId}}
+  <p>We don't know what version of BW was used for this run.
+     That probably means it's an old version.
+{{/commitId}}
+
+<p>
+{{completedFrameworks}}/{{totalFrameworks}} frameworks tested
+{{#lastCompletedFramework}}
+  (last was {{lastCompletedFramework}})
+{{/lastCompletedFramework}}
+<br>
+{{frameworksWithCleanSetup}} frameworks started and stopped cleanly<br>
+{{frameworksWithSetupProblems}} frameworks had problems starting or stopping<br>
+{{successfulTests}} tests passed<br>
+{{failedTests}} tests failed<br>
+
+<p>
+{{#startTime}}started {{startTime}}<br>{{/startTime}}
+{{#lastUpdated}}last updated {{lastUpdated}}<br>{{/lastUpdated}}
+{{#completionTime}}completed {{completionTime}}<br>{{/completionTime}}
+{{#elapsedDuration}}elapsed time {{elapsedDuration}}<br>{{/elapsedDuration}}
+{{#estimatedRemainingDuration}}estimated remaining time {{estimatedRemainingDuration}}<br>{{/estimatedRemainingDuration}}
+
+<p>
+{{#jsonFileName}}<a href="/raw/{{jsonFileName}}">results.json</a><br>{{/jsonFileName}}
+{{#zipFileName}}<a href="/raw/{{zipFileName}}">results.zip</a> (<a href="/unzip/{{zipFileName}}">browse</a>)<br>{{/zipFileName}}
+
+{{^failures.isEmpty}}
+  <p>Frameworks with test failures:<br>
+  <ul class="failures">
+  {{#failures}}
+    <li>
+      {{#zipFileName}}<a href="/unzip/{{zipFileName}}/{{framework}}">[{{framework}}]</a>{{/zipFileName}}
+      {{^zipFileName}}[{{framework}}]{{/zipFileName}}
+      {{#hadSetupProblems}} had problems starting or stopping{{/hadSetupProblems}}
+      {{^failedTestTypes.isEmpty}}{{#hadSetupProblems}},{{/hadSetupProblems}} failed:{{#failedTestTypes}} {{.}}{{/failedTestTypes}}{{/failedTestTypes.isEmpty}}
+  {{/failures}}
+  </ul>
+{{/failures.isEmpty}}
+
+{{/result}}
+
+<p>You are viewing a single set of results.
+<a href="/">See the full list of results.</a>
+
+{{> time-zone.mustache}}
+{{/body}}
+
+{{/layout}}
