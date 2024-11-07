@@ -1,0 +1,37 @@
+{{<layout}}
+
+{{!
+--------------------------------------------------------------------------------
+The HTML of the about page.
+--------------------------------------------------------------------------------
+}}
+
+{{$styles}}
+<link rel="stylesheet" href="/assets/css/about.css">
+{{/styles}}
+
+{{$body}}
+
+<p>For an explanation of what this website is, see the
+<a href="https://github.com/KhulnaSoft/bw-status">bw-status project on GitHub</a>.
+
+{{^gitProperties.isEmpty}}
+<p>Here is the state of the local git repository at the time this deployment of
+bw-status was built:
+
+<table class="gitPropertiesTable">
+{{#gitProperties}}
+  <tr>
+  <td><code>{{name}}</code>
+  <td><pre>{{value}}</pre>
+{{/gitProperties}}
+</table>
+
+<p>This information was collected with the
+<a href="https://github.com/ktoso/maven-git-commit-id-plugin">maven git commit id plugin</a>.
+
+{{/gitProperties.isEmpty}}
+
+{{/body}}
+
+{{/layout}}

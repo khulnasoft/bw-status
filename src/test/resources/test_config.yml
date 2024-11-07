@@ -1,0 +1,42 @@
+http:
+  host: localhost
+  port: 0
+  gracefulShutdownTimeoutMillis: 500
+  forcefulShutdownTimeoutMillis: 500
+  keyStore:
+    path: localhost.jks
+    password: password
+
+email:
+  host: localhost
+  port: 0
+  username: fake_username
+  password: fake_password
+  from: bw+testing@khulnasoft.com
+  to: bw+testing@khulnasoft.com
+
+assets:
+  mode: CLASS_PATH
+
+mustache:
+  mode: CLASS_PATH
+
+fileStore:
+  root: test_managed_files
+
+runProgressMonitor:
+  environmentTimeoutSeconds: 1
+  maxEnvironments: 100
+
+runCompleteMailer:
+  minSecondsBetweenEmails: 0
+
+share:
+  minSecondsBetweenEmails: 10
+  maxDirectorySizeInBytes: 10000000
+  maxFileSizeInBytes: 5000000
+  bwStatusOrigin: https://bw-status.localhost
+  bwWebsiteOrigin: https://bw-website.localhost
+
+healthCheck:
+  intervalSeconds: 1

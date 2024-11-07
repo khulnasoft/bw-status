@@ -1,0 +1,30 @@
+{{<layout}}
+
+{{!
+--------------------------------------------------------------------------------
+The HTML of the unzipped directory page.
+--------------------------------------------------------------------------------
+}}
+
+{{$styles}}
+<link rel="stylesheet" href="/assets/css/unzipped-directory.css">
+{{/styles}}
+
+{{$body}}
+
+<h4>{{#breadcrumbs}}{{#isSelected}}{{fileName}}{{/isSelected}}{{^isSelected}}<a href="/unzip/{{fullPath}}">{{fileName}}</a>{{/isSelected}}/{{/breadcrumbs}}</h4>
+
+{{#children}}
+<div class="file">
+  <a class="fileName"
+     href="/unzip/{{fullPath}}">{{fileName}}{{#isDirectory}}/{{/isDirectory}}</a>
+  <div class="fileSize">
+    {{#size}}{{size}}{{/size}}
+    {{^size}}-{{/size}}
+  </div>
+</div>
+{{/children}}
+
+{{/body}}
+
+{{/layout}}

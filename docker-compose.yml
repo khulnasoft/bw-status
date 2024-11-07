@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  bwstatus:
+    build:
+      context: .
+      args:
+        SKIP_TESTS: "true"
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:5005:5005"
+    volumes:
+      - ./managed_files:/bwstatus/managed_files
+      - ./example-config.yml:/bwstatus/config.yml
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar bw-status.jar
+    command: config.yml

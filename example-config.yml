@@ -1,0 +1,59 @@
+# ------------------------------------------------------------------------------
+# This is an example configuration file for the bw-status application.
+#
+# To create your own configuration file, start by copying this file and then
+# modify whatever settings you want.  The structure of configuration files is
+# defined by the following class:
+#
+#   src/main/java/bw/status/config/ApplicationConfig.java
+#
+# Refer to that class for documentation about each of the available
+# configuration settings.
+#
+# To run the bw-status application with a custom configuration file, the first
+# command-line argument for the application must be the path to that
+# configuration file.
+# ------------------------------------------------------------------------------
+
+#http:
+#  host: "0.0.0.0"
+#  port: 80
+#  gracefulShutdownTimeoutMillis: 2000
+#  forcefulShutdownTimeoutMillis: 1000
+#  keyStore:
+#    path: src/test/resources/localhost.jks
+#    password: password
+
+#assets:
+#  mode: FILE_SYSTEM
+
+#mustache:
+#  mode: FILE_SYSTEM
+
+#fileStore:
+#  root: managed_files
+
+#email:
+#  host: mail.khulnasoft.com
+#  port: 25
+#  username: admin@khulnasoft.com
+#  password: fake_password
+#  from: admin@khulnasoft.com
+#  to: admin@khulnasoft.com
+
+#runProgressMonitor:
+#  environmentTimeoutSeconds: 21600
+#  maxEnvironments: 5
+
+#runCompleteMailer:
+#  minSecondsBetweenEmails: 86400
+
+#share:
+#  minSecondsBetweenEmails: 86400
+#  maxDirectorySizeInBytes: 1000000000
+#  maxFileSizeInBytes: 5000000
+#  bwStatusOrigin: https://bw-status.khulnasoft.com
+#  bwWebsiteOrigin: https://www.khulnasoft.com
+
+#healthCheck:
+#  intervalSeconds: 30

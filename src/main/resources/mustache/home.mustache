@@ -1,0 +1,39 @@
+{{<layout}}
+
+{{!
+--------------------------------------------------------------------------------
+The HTML of the home page.
+--------------------------------------------------------------------------------
+}}
+
+{{$styles}}
+<link rel="stylesheet" href="/assets/css/home.css">
+{{/styles}}
+
+{{$scripts}}
+<script defer src="/assets/js/home.js"></script>
+{{/scripts}}
+
+{{$body}}
+{{#announcement}}
+<div class="announcement">{{.}}</div>
+{{/announcement}}
+
+<h1>KhulnaSoft Framework Benchmarks<br>Results Dashboard</h1>
+
+<table class="resultsTable">
+  <tbody>
+  {{#results}}
+  {{> home-result.mustache}}
+  {{/results}}
+  </tbody>
+</table>
+
+{{#hasNext}}
+<p><a href="/?skip={{next}}&limit={{limit}}">Older results</a>
+{{/hasNext}}
+
+{{> time-zone.mustache}}
+{{/body}}
+
+{{/layout}}

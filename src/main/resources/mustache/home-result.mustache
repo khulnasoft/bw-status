@@ -1,0 +1,36 @@
+<tr {{#uuid}}data-uuid="{{uuid}}"{{/uuid}}>
+<td>
+  {{environmentDescription}}<br>
+  {{#uuid}}
+    Run ID: <code>{{uuid}}</code><br>
+    {{#commitId}}
+      commit:
+      {{#browseCommitUrl}}
+        <a href="{{browseCommitUrl}}"><code>{{commitId}}</code></a>
+      {{/browseCommitUrl}}
+      {{^browseCommitUrl}}
+        <code>{{commitId}}</code>
+      {{/browseCommitUrl}}
+      <br>
+    {{/commitId}}
+    <a href="/results/{{uuid}}">details</a><br>
+    {{#visualizeResultsUrl}}
+      <a href="{{visualizeResultsUrl}}">visualize</a><br>
+    {{/visualizeResultsUrl}}
+  {{/uuid}}
+<td>
+  {{completedFrameworks}}/{{totalFrameworks}} frameworks tested
+  {{#lastCompletedFramework}}
+    (last was {{lastCompletedFramework}})
+  {{/lastCompletedFramework}}
+  <br>
+  {{frameworksWithCleanSetup}} frameworks started and stopped cleanly<br>
+  {{frameworksWithSetupProblems}} frameworks had problems starting or stopping<br>
+  {{successfulTests}} tests passed<br>
+  {{failedTests}} tests failed<br>
+<td>
+  {{#startTime}}started {{startTime}}<br>{{/startTime}}
+  {{#lastUpdated}}last updated {{lastUpdated}}<br>{{/lastUpdated}}
+  {{#completionTime}}completed {{completionTime}}<br>{{/completionTime}}
+  {{#elapsedDuration}}elapsed time {{elapsedDuration}}<br>{{/elapsedDuration}}
+  {{#estimatedRemainingDuration}}estimated remaining time {{estimatedRemainingDuration}}<br>{{/estimatedRemainingDuration}}

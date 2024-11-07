@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset comparisonMethod="maven"
+         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0
+                             http://www.mojohaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+  <!-- When we run "mvn versions display-dependency-updates -U", the plugin may
+       tell us something like this:
+
+         One of your dependencies is out of date.  You're using v1.0 but
+         v2.0-alpha is available.
+
+       In general we only want to use stable versions of libraries.  We don't
+       want to use any alpha, beta, pre-release, or release candidate versions.
+       We don't want the plugin to tell us about those non-stable versions.
+       Those alerts are useless noise, and worse: they override alerts about
+       versions that we *do* want to use.  In the v1.0 and v2.0-alpha example,
+       if v1.1 was released, the plugin wouldn't tell us because it would be too
+       busy telling us about v2.0-alpha.
+
+       It's possible to configure the plugin to ignore certain versions by way
+       of pattern matching.  That's what we're doing here in this file.
+
+       These rules are written by us and are not infallible.  They'll need to be
+       maintained especially as we add new dependencies.
+
+       As a measure of success, the "mvn versions display-dependency-updates -U"
+       command should *always* show *only* versions that we want to upgrade to
+       *immediately*.  If that is ever not the case, then we should modify these
+       rules to ignore those versions.
+
+       Note that this file has no effect unless the versions-maven-plugin is
+       actually configured to use it.  That is done in our main pom.xml file, by
+       setting the plugin's "rulesUri" property to point at this file.
+
+       For more information about version rules files in general, see:
+       http://www.mojohaus.org/versions-maven-plugin/version-rules.html
+  -->
+
+  <rules>
+
+    <rule groupId="io.undertow" artifactId="undertow-core" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\.Alpha[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\.Beta[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="com.fasterxml.jackson.*" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\.pr[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\.rc[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-rc[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="com.google.guava" artifactId="guava" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+-android</ignoreVersion>
+        <ignoreVersion type="regex">.+-rc[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.slf4j" artifactId="slf4j-api" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-alpha[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-beta[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="com.sun.activation" artifactId="jakarta.activation" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-rc[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-RC[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="com.sun.mail" artifactId="jakarta.mail" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-RC[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.junit.jupiter" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-M[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-RC[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.junit.platform" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-M[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-RC[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="ch.qos.logback" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-alpha[\d]+</ignoreVersion>
+        <ignoreVersion type="regex">.+\-beta[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="javax.xml.bind" artifactId="jaxb-api" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-b[\d\.]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.glassfish.hk2" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-M[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="org.apache.maven.plugins" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\-M[\d]+</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+    <rule groupId="jakarta.inject" artifactId="jakarta.inject-api" comparisonMethod="maven">
+      <ignoreVersions>
+        <ignoreVersion type="regex">.+\.MR</ignoreVersion>
+      </ignoreVersions>
+    </rule>
+
+  </rules>
+
+</ruleset>

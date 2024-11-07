@@ -1,0 +1,30 @@
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%p [%d] %c: %m%n</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+    <filter class="bw.status.testlib.LoggerThresholdFilter">
+      <loggerName>bw.status.hk2.extensions.TopicDistributionServiceImpl</loggerName>
+      <loggerName>bw.status.handler.ShareUploadHandler</loggerName>
+      <level>ERROR</level>
+    </filter>
+    <filter class="bw.status.testlib.LoggerThresholdFilter">
+      <loggerName>bw.status.service.HealthChecker</loggerName>
+      <loggerName>bw.status.service.TaskScheduler</loggerName>
+      <loggerName>http</loggerName>
+      <level>OFF</level>
+    </filter>
+  </appender>
+
+  <appender name="TEST_APPENDER" class="bw.status.testlib.TestAppender" />
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="TEST_APPENDER" />
+  </root>
+
+</configuration>
