@@ -36,10 +36,10 @@
 #email:
 #  host: mail.khulnasoft.com
 #  port: 25
-#  username: mhixson@khulnasoft.com
+#  username: admin@khulnasoft.com
 #  password: fake_password
-#  from: mhixson@khulnasoft.com
-#  to: mhixson@khulnasoft.com
+#  from: admin@khulnasoft.com
+#  to: admin@khulnasoft.com
 
 #runProgressMonitor:
 #  environmentTimeoutSeconds: 21600
